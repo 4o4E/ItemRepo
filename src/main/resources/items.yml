@@ -1,0 +1,30 @@
+test_item:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2975
+  type: IRON_SWORD
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '{"italic":false,"color":"white","text":"铁棘刺"}'
+    lore:
+      - '{"italic":false,"color":"aqua","text":"⭑ 类型: 单手剑"}'
+      - '{"italic":false,"extra":[{"color":"aqua","text":"⭑ 品质: "},{"bold":true,"color":"gray","text":"普通"}],"text":""}'
+      - '{"italic":false,"text":""}'
+      - '{"italic":false,"color":"aqua","text":"⭑ 攻击伤害: 8"}'
+      - '{"italic":false,"color":"aqua","text":"⭑ 攻击速度: 1.6"}'
+      - '{"italic":false,"text":""}'
+      - '{"italic":true,"color":"gray","text":"剑身上的倒刺令人感到恐惧"}'
+      - '{"italic":false,"text":""}'
+      - '{"italic":false,"color":"red","text":"⭑ 等级限制: 1"}'
+      - '{"italic":false,"color":"aqua","text":"⭑ 耐久度: 400/400"}'
+    custom-model-data: 10
+    attribute-modifiers:
+      GENERIC_ATTACK_SPEED:
+        - ==: org.bukkit.attribute.AttributeModifier
+          amount: 0.0
+          name: mmoitemsDecoy
+          uuid: 87851e28-af12-43f6-898e-c62bde6bd0ec
+          operation: 0
+    ItemFlags:
+      - HIDE_ATTRIBUTES
+    internal: H4sIAAAAAAAA/41SzWsTQRR/azDEguIHKupl2UNPRSuIlb20k90xGdyPODtRwxIW9SoUai5SCglWTCxCahVMDvZgMYK0WBTRjaf6F/gvSGaT3Lx6c7JJNumH4MDu4f3e72PevAmAOJwxTZswbDoeYgxpNzwdmSiF52QITxxO721wMhjrs39qvVNPwPEI7/09osOR7lopePual/0EHI1QC5l4DIrB2Qgy0R1Pz1KUJAZhOQCpmoATEYotLY0s5sAhNx+D81FdyzrMNj3T1rEhUjMk4k5IcCFq0ImDkgYeChArJUlwbh/smISl/wVqFF0PmfGxvBTfzBKKdc/At7Ax+7s/Kmks25BOcQYR2uMn4OTuQbFcBsNh57ZN9YNTYWMQeWQ8GpKXRFRoHks7jOZGI5pbVJzC3YKiKsOSMqXYKacwv/BIUd1FZd9UvR/bDwsLguDmlaX8UgxOHeDWf5LRJug58ZpE8wybYvjpKpP3fm2uyu3tJn+zosr8+augssIrq8K7j/C1Uufze1XeaczsNB4Eta1usS7ACA9eNvnTZuv7Bt/6pMrX9tS7xXXuv1PlyxevDkgzk/NCvuN/aH191q4v8+ILsVGt5kbL94PldV7+GJSqwePGoPt+GG6z0vYb3VqVl78IqciiU6y2vj0J9a9MT18Sn5IfX9vwilPu/3vuYjOCKcQ1WxQs+AsDZ7R/cAMAAA==

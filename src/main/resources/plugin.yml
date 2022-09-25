@@ -1,0 +1,21 @@
+name: ItemRepo
+version: "${version}"
+main: top.e404.itemrepo.ItemRepo
+api-version: 1.16
+depend:
+  - PlaceholderAPI
+softdepend:
+  - Slimefun
+  - MMOItems
+authors:
+  - 404E
+commands:
+  itemrepo:
+    description: 插件主命令
+    aliases:
+      - irepo
+      - ir
+permissions:
+  itemrepo.admin:
+    default: op
+    description: 允许使用插件指令

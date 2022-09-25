@@ -1,0 +1,66 @@
+prefix: "&7[&a物品仓库&7]"
+debug_prefix: "&7[&a物品仓库_DEBUG&7]"
+
+debug:
+  console_enable: "&f已临时(修改config.yml永久设置)&a启用&bDebug&f, 下次重启前你将会收到&bDebug&f消息, 再使用一次此指令以&c禁用"
+  console_disable: "&f已临时(修改config.yml永久设置)&c禁用&bDebug&f, 下次重启前你不会收到&bDebug&f消息, 再使用一次此指令以&a启用"
+  player_enable: "&f已&a启用&bDebug&f, 你将会收到&bDebug&f消息, 再使用一次此指令以&c禁用"
+  player_disable: "&f已&c禁用&bDebug&f, 你不会收到&bDebug&f消息, 再使用一次此指令以&a启用"
+
+message:
+  noperm: "&c无权限"
+  non_player: "&c仅玩家可用"
+  unknown_command: "&c未知指令"
+  invalid_args: "&c无效参数"
+  invalid_world: "&c不存在名为{world}的世界"
+  invalid_duration: "&c时长{duration}格式错误"
+  invalid_config: "&c配置文件`{file}`格式错误"
+
+hook:
+  non_enable: "{hook}未启用"
+  enable: "扫描到依赖{plugin}, 已启用相关支持"
+  disable: "未扫描到依赖{plugin}, 已禁用"
+
+command:
+  id_already_exists: "&c已存在的id{id}"
+  id_non_exists: "&c不存在id为{id}的物品, 当前已有物品[{ids}]"
+  invalid_item: "&c不存在此物品: {item}"
+  invalid_id: "&c无效id{id}, id中不可包含'.'字符, 请重新输入"
+  invalid_player: "&c不存在或不在线的玩家: {player}"
+  invalid_number: "&c无效数字: {number}"
+  empty_hand: "&c你主手没有物品, 请手持要添加的物品再执行此指令"
+
+  add_done: "&a已添加物品: {id}"
+  del_done: "&a已删除物品: {id}"
+
+  reload_done: "&a重载完成"
+  save_done: "&a保存完成"
+
+  give: "&a已将物品&6{item}&ax&b{count}&a给予玩家{player}"
+  give_with_drop:
+    target: "&c你的背包已满, 多余的物品将会丢弃在地上"
+    trigger: "&c目标{player}的背包已满, 多余的物品将会丢弃在地上"
+  get_with_drop: "&c你的背包已满, 多余的物品将会丢弃在地上"
+
+  take: "&a已从玩家{player}背包拿取物品&6{item}&ax&b{count}"
+  take_not_enough: "&c从玩家{player}背包拿取物品&6{item}&cx&b{count}&c时物品不足"
+
+  usage:
+    reload: "&a/ir reload &f重载配置文件"
+    debug: "&a/ir debug &f切换debug消息的接受与否"
+    save: "&a/ir save &f立即保存物品"
+    get: |
+      &a/ir get <物品id> &f获取指定物品
+      &a/ir get <物品id> <数量> &f获取指定物品
+    give: |
+      &a/ir give <玩家id> <物品id> &f给予玩家一个指定物品
+      &a/ir give <玩家id> <物品id> <数量> &f给予玩家指定数量的指定物品
+    take: |
+      &a/ir take mc <玩家id> <物品id> &f从玩家背包种拿取一个原版物品
+      &a/ir take mc <玩家id> <物品id> <数量> &f从玩家背包种拿取指定数量的原版物品
+      &a/ir take mi <玩家id> <物品类型> <物品id> &f从玩家背包中拿取一个mmoitems物品
+      &a/ir take mi <玩家id> <物品类型> <物品id> <数量> &f从玩家背包中拿取指定数量的mmoitems物品
+      &a/ir take sf <玩家id> <物品id> &f从玩家背包中拿取一个Slimefun物品
+      &a/ir take sf <玩家id> <物品id> <数量> &f从玩家背包中拿取指定数量的Slimefun物品
+    add: "&a/ir add <物品id> &f添加主手物品"
+    del: "&a/ir del <物品id> &f删除物品"

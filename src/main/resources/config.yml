@@ -1,0 +1,2 @@
+# 若设置为true则会在控制台输出debug信息
+debug: false
