@@ -12,7 +12,7 @@ import top.e404.itemrepo.config.Lang
 object Give : ECommand(
     PL,
     "give",
-    Regex("(?i)give"),
+    "(?i)give",
     false,
     "itemrepo.admin"
 ) {

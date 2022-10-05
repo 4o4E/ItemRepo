@@ -10,7 +10,7 @@ import top.e404.itemrepo.config.Lang
 object Save : ECommand(
     PL,
     "save",
-    Regex("(?i)save|s"),
+    "(?i)save|s",
     false,
     "itemrepo.admin"
 ) {

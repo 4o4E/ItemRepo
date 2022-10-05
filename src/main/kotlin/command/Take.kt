@@ -17,7 +17,7 @@ import top.e404.itemrepo.hook.SfHook
 object Take : ECommand(
     PL,
     "take",
-    Regex("(?i)take"),
+    "(?i)take",
     false,
     "itemrepo.admin"
 ) {

@@ -12,7 +12,7 @@ import top.e404.itemrepo.config.Lang
 object Get : ECommand(
     PL,
     "get",
-    Regex("(?i)get"),
+    "(?i)get",
     true,
     "itemrepo.admin"
 ) {

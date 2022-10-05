@@ -11,7 +11,7 @@ import top.e404.itemrepo.config.Lang
 object Add : ECommand(
     PL,
     "add",
-    Regex("(?i)add"),
+    "(?i)add",
     false,
     "itemrepo.admin"
 ) {

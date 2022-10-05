@@ -10,7 +10,7 @@ import top.e404.itemrepo.config.Lang
 object Del : ECommand(
     PL,
     "del",
-    Regex("(?i)del"),
+    "(?i)del",
     false,
     "itemrepo.admin"
 ) {

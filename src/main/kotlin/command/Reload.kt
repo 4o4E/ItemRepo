@@ -12,7 +12,7 @@ import top.e404.itemrepo.hook.HookManager
 object Reload : ECommand(
     PL,
     "reload",
-    Regex("(?i)reload|r"),
+    "(?i)reload|r",
     false,
     "itemrepo.admin"
 ) {
