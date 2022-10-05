@@ -1,16 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.0"
-    kotlin("plugin.serialization") version "1.7.0"
+    kotlin("jvm") version Versions.kotlin
+    kotlin("plugin.serialization") version Versions.kotlin
     id("com.github.johnrengelman.shadow") version "7.1.2"
     `maven-publish`
     `java-library`
 }
 
-group = "top.e404"
-version = "1.0.0"
-val epluginVersion = "1.0.3"
+group = Versions.group
+version = Versions.version
 
 fun kotlinx(id: String, version: String) = "org.jetbrains.kotlinx:kotlinx-$id:$version"
 
@@ -32,9 +31,9 @@ dependencies {
     // spigot
     compileOnly("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
     // eplugin
-    implementation("top.e404:eplugin:${epluginVersion}")
-    implementation("top.e404:eplugin-hook-slimefun:${epluginVersion}")
-    implementation("top.e404:eplugin-hook-mmoitems:${epluginVersion}")
+    implementation("top.e404:eplugin-core:${Versions.eplugin}")
+    implementation("top.e404:eplugin-hook-slimefun:${Versions.eplugin}")
+    implementation("top.e404:eplugin-hook-mmoitems:${Versions.eplugin}")
     // sf
     compileOnly("com.github.Slimefun:Slimefun4:RC-30")
     // mi
@@ -59,8 +58,8 @@ tasks {
     shadowJar {
         archiveFileName.set("${project.name}-${project.version}.jar")
         exclude("META-INF/*")
-        relocate("kotlin", "kotlin1_7_0")
-        relocate("top.e404.eplugin", "top.e404.playerprefix.eplugin")
+        relocate("kotlin", "top.e404.itemrepo.kotlin ")
+        relocate("top.e404.eplugin", "top.e404.itemrepo.eplugin")
 
         doFirst {
             for (file in File("jar").listFiles() ?: arrayOf()) {
