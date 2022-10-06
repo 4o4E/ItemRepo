@@ -7,6 +7,7 @@ depend:
 softdepend:
   - Slimefun
   - MMOItems
+  - ItemsAdder
 authors:
   - 404E
 commands:

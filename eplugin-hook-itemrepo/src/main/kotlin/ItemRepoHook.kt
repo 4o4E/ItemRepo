@@ -9,7 +9,7 @@ import top.e404.itemrepo.config.ItemManager
 @Suppress("UNUSED")
 open class ItemRepoHook(
     override val plugin: EPlugin,
-) : EHook<ItemRepo>(plugin, "ItemRepo") {
+) : EHook(plugin, "ItemRepo") {
     val ir: ItemRepo
         get() = PL
 

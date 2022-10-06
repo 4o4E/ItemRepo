@@ -7,4 +7,5 @@ object HookManager : EHookManager(
     PL,
     SfHook,
     MiHook,
+    IaHook
 )

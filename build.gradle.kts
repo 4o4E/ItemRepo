@@ -18,7 +18,7 @@ repositories {
     // spigot
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven("https://oss.sonatype.org/content/groups/public/")
-    // sf
+    // jitpack
     maven("https://jitpack.io")
     // mmo
     maven("https://mvn.lumine.io/repository/maven/")
@@ -33,7 +33,11 @@ dependencies {
     // eplugin
     implementation("top.e404:eplugin-core:${Versions.eplugin}")
     implementation("top.e404:eplugin-hook-slimefun:${Versions.eplugin}")
+    implementation("top.e404:eplugin-hook-itemsadder:${Versions.eplugin}")
     implementation("top.e404:eplugin-hook-mmoitems:${Versions.eplugin}")
+    implementation("top.e404:eplugin-hook-placeholderapi:${Versions.eplugin}")
+    // ia
+    compileOnly("com.github.LoneDev6:api-itemsadder:3.0.0")
     // sf
     compileOnly("com.github.Slimefun:Slimefun4:RC-30")
     // mi
@@ -58,8 +62,8 @@ tasks {
     shadowJar {
         archiveFileName.set("${project.name}-${project.version}.jar")
         exclude("META-INF/*")
-        relocate("kotlin", "top.e404.itemrepo.kotlin ")
-        relocate("top.e404.eplugin", "top.e404.itemrepo.eplugin")
+        relocate("kotlin", "top.e404.itemrepo.relocate.kotlin")
+        relocate("top.e404.eplugin", "top.e404.itemrepo.relocate.eplugin")
 
         doFirst {
             for (file in File("jar").listFiles() ?: arrayOf()) {
@@ -89,7 +93,7 @@ afterEvaluate {
         artifact(tasks.getByName("sourcesJar"))
         artifact(tasks.getByName("javadocJar"))
         artifactId = "item-repo"
-        groupId = group as String
-        version = version
+        groupId = Versions.group
+        version = Versions.version
     }
 }

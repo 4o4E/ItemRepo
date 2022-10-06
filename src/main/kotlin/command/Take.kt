@@ -11,6 +11,7 @@ import top.e404.eplugin.command.ECommand
 import top.e404.itemrepo.PL
 import top.e404.itemrepo.config.ItemManager
 import top.e404.itemrepo.config.Lang
+import top.e404.itemrepo.hook.IaHook
 import top.e404.itemrepo.hook.MiHook
 import top.e404.itemrepo.hook.SfHook
 
@@ -24,7 +25,7 @@ object Take : ECommand(
     override val usage: String
         get() = Lang["command.usage.take"].color()
 
-    private val allow = listOf("mc", "mi", "sf")
+    private val allow = listOf("mc", "mi", "sf", "ia")
 
     override fun onTabComplete(
         sender: CommandSender,
@@ -55,6 +56,14 @@ object Take : ECommand(
                         Slimefun.getRegistry()
                             .slimefunItemIds
                             .keys
+                            .let { names ->
+                                if (last.isBlank()) complete.addAll(names)
+                                else names.forEach { if (it.contains(last, true)) complete.add(it) }
+                            }
+                    }
+                    "ia" -> if (IaHook.enable) {
+                        IaHook.getAllItem()
+                            .map { it.namespacedID }
                             .let { names ->
                                 if (last.isBlank()) complete.addAll(names)
                                 else names.forEach { if (it.contains(last, true)) complete.add(it) }
@@ -167,6 +176,30 @@ object Take : ECommand(
                     Lang[
                             if (success) "command.take" else "command.take_not_enough",
                             "item" to itemId,
+                            "player" to playerId,
+                            "count" to count,
+                    ]
+                )
+            }
+            "ia" -> {
+                if (!IaHook.enable) {
+                    plugin.sendMsgWithPrefix(sender, Lang["hook.non_enable", "hook" to IaHook.name])
+                    return
+                }
+                val namespacedID = args[3]
+                val count = if (args.size == 4) 1 else args[4].toIntOrNull()
+                if (count == null) {
+                    plugin.sendMsgWithPrefix(sender, Lang["command.invalid_number", "number" to args[4]])
+                    return
+                }
+                val success = p.takeItem(count) {
+                    IaHook.getIaItemInfo(it)?.namespacedID?.equals(namespacedID, true) ?: false
+                }
+                plugin.sendMsgWithPrefix(
+                    sender,
+                    Lang[
+                            if (success) "command.take" else "command.take_not_enough",
+                            "item" to namespacedID,
                             "player" to playerId,
                             "count" to count,
                     ]

@@ -1,7 +1,7 @@
 package top.e404.itemrepo.papi
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
+import top.e404.eplugin.hook.placeholderapi.PapiExpansion
 import top.e404.itemrepo.PL
 import top.e404.itemrepo.config.ItemManager
 import top.e404.itemrepo.config.Lang
@@ -17,11 +17,7 @@ import java.util.regex.Pattern
  * - `%itemcount_mi_<type>_<id>%` 计算玩家背包中指定mi物品的数量
  * - `%itemcount_mc_<id>%` 计算玩家背包中指定物品的数量
  */
-object PapiExpansion : PlaceholderExpansion() {
-    override fun getIdentifier() = "itemcount"
-    override fun getAuthor() = "404E"
-    override fun getVersion() = PL.description.version
-
+object PlaceholderAPIExpansion : PapiExpansion(PL, "itemcount") {
     private val pattern = Pattern.compile("(?<itemType>[^_]+)(_<(?<p1>[^>]+)>)?(_<(?<p2>[^>]+)>)?")!!
 
     override fun onPlaceholderRequest(player: Player?, params: String): String? {
@@ -43,6 +39,7 @@ object PapiExpansion : PlaceholderExpansion() {
                 }
                 c.toString()
             }
+
             "sf" -> {
                 var c = 0
                 if (!SfHook.enable) {
@@ -56,6 +53,7 @@ object PapiExpansion : PlaceholderExpansion() {
                 }
                 c.toString()
             }
+
             "mi" -> {
                 if (!MiHook.enable) {
                     PL.warn(Lang["hook.non_enable", "hook" to MiHook.name])
@@ -72,6 +70,7 @@ object PapiExpansion : PlaceholderExpansion() {
                 }
                 c.toString()
             }
+
             else -> null
         }
     }

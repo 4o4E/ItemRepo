@@ -6,7 +6,7 @@ import top.e404.itemrepo.config.Config
 import top.e404.itemrepo.config.ItemManager
 import top.e404.itemrepo.config.Lang
 import top.e404.itemrepo.hook.HookManager
-import top.e404.itemrepo.papi.PapiExpansion
+import top.e404.itemrepo.papi.PlaceholderAPIExpansion
 
 class ItemRepo : EPlugin() {
     override val debugPrefix: String
@@ -14,7 +14,12 @@ class ItemRepo : EPlugin() {
     override val prefix: String
         get() = langManager.getOrElse("prefix") { "&7[&6物品仓库&7]" }
 
-    override fun enableDebug() = Config.debug
+    override var debug: Boolean
+        get() = Config.debug
+        set(value) {
+            Config.debug = value
+        }
+
     override val langManager by lazy { Lang }
 
     override fun onEnable() {
@@ -23,13 +28,14 @@ class ItemRepo : EPlugin() {
         Lang.load(null)
         ItemManager.load(null)
         Commands.register()
-        PapiExpansion.register()
+        PlaceholderAPIExpansion.register()
         HookManager.register()
         info("&a加载完成")
     }
 
     override fun onDisable() {
         cancelAllTask()
+        PlaceholderAPIExpansion.unregister()
         ItemManager.shutdown()
         info("&a卸载完成")
     }

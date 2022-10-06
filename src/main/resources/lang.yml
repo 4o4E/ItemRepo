@@ -19,7 +19,7 @@ message:
 hook:
   non_enable: "{hook}未启用"
   enable: "扫描到依赖{plugin}, 已启用相关支持"
-  disable: "未扫描到依赖{plugin}, 已禁用"
+  disable: "未扫描到依赖{plugin}, 已禁用相关支持"
 
 command:
   id_already_exists: "&c已存在的id{id}"
@@ -62,5 +62,7 @@ command:
       &a/ir take mi <玩家id> <物品类型> <物品id> <数量> &f从玩家背包中拿取指定数量的mmoitems物品
       &a/ir take sf <玩家id> <物品id> &f从玩家背包中拿取一个Slimefun物品
       &a/ir take sf <玩家id> <物品id> <数量> &f从玩家背包中拿取指定数量的Slimefun物品
+      &a/ir take ia <玩家id> <物品id> &f从玩家背包中拿取一个ItemsAdder物品, 物品id格式为namespace:id
+      &a/ir take ia <玩家id> <物品id> <数量> &f从玩家背包中拿取指定数量的ItemsAdder物品, 物品id格式为namespace:id
     add: "&a/ir add <物品id> &f添加主手物品"
     del: "&a/ir del <物品id> &f删除物品"
