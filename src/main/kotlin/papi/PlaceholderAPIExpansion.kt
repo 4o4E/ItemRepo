@@ -5,9 +5,9 @@ import top.e404.eplugin.hook.placeholderapi.PapiExpansion
 import top.e404.itemrepo.PL
 import top.e404.itemrepo.config.ItemManager
 import top.e404.itemrepo.config.Lang
+import top.e404.itemrepo.hook.IaHook
 import top.e404.itemrepo.hook.MiHook
 import top.e404.itemrepo.hook.SfHook
-import java.util.regex.Pattern
 
 /**
  * # 占位符
@@ -15,18 +15,18 @@ import java.util.regex.Pattern
  * - `%itemcount_empty%` 计算玩家背包中空格子的数量
  * - `%itemcount_sf_<id>%` 计算玩家背包中指定粘液科技物品的数量
  * - `%itemcount_mi_<type>_<id>%` 计算玩家背包中指定mi物品的数量
+ * - `%itemcount_ia_<namespaceID>%` 计算玩家背包中指定ia物品的数量
  * - `%itemcount_mc_<id>%` 计算玩家背包中指定物品的数量
  */
 object PlaceholderAPIExpansion : PapiExpansion(PL, "itemcount") {
-    private val pattern = Pattern.compile("(?<itemType>[^_]+)(_<(?<p1>[^>]+)>)?(_<(?<p2>[^>]+)>)?")!!
+    private val regex = Regex("(?<itemType>[^_]+)_<(?<p1>[^>]+)>(_<(?<p2>[^>]+)>)?")
 
     override fun onPlaceholderRequest(player: Player?, params: String): String? {
         if (player == null) return "player is null"
-        val matcher = pattern.matcher(params)
-        if (!matcher.find()) return null
-        val itemType = matcher.group("itemType")!!
-        val p1 = matcher.group("p1")
-        val p2 = matcher.group("p2")
+        val result = regex.find(params) ?: return null
+        val itemType = result.groups["itemType"]!!.value
+        val p1 = result.groups["p1"]!!.value
+        val p2 = result.groups["p2"]?.value
         return when (itemType.lowercase()) {
             "empty" -> player.inventory.count { it == null || it.type.isAir }.toString()
             "mc" -> {
@@ -59,6 +59,7 @@ object PlaceholderAPIExpansion : PapiExpansion(PL, "itemcount") {
                     PL.warn(Lang["hook.non_enable", "hook" to MiHook.name])
                     return "0"
                 }
+                if (p2 == null) return null
                 var c = 0
                 for (i in player.inventory) {
                     if (i == null || i.type.isAir) continue
@@ -67,6 +68,20 @@ object PlaceholderAPIExpansion : PapiExpansion(PL, "itemcount") {
                     val type = miItem.type
                     val id = miItem.getString("MMOITEMS_ITEM_ID")
                     if (type.equals(p1, true) && id == p2) c += i.amount
+                }
+                c.toString()
+            }
+
+            "ia" -> {
+                if (!IaHook.enable) {
+                    PL.warn(Lang["hook.non_enable", "hook" to IaHook.name])
+                    return "0"
+                }
+                var c = 0
+                for (i in player.inventory) {
+                    if (i == null || i.type.isAir) continue
+                    val stack = IaHook.getIaItemInfo(i) ?: continue
+                    if (stack.namespacedID == p1) c += i.amount
                 }
                 c.toString()
             }
